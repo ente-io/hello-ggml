@@ -1,5 +1,0 @@
-cmake_minimum_required(VERSION 3.9)
-project(testggml VERSION 1.0.0 DESCRIPTION "testggml")
-add_library(testggml SHARED test.cpp)
-target_include_directories(clip PRIVATE ../clip.cpp)
-target_link_libraries(testggml PRIVATE clip ggml)
