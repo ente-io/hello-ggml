@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:async';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:hello_ggml/hello_ggml.dart';
 
@@ -18,20 +22,40 @@ class _MyAppState extends State<MyApp> {
   late String response;
   late Future<int> sumAsyncResult;
 
+  Future<String> getAccessiblePathForAsset(
+      String assetPath, String tempName) async {
+    final byteData = await rootBundle.load(assetPath);
+    final tempDir = await getTemporaryDirectory();
+    final file = await File('${tempDir.path}/$tempName')
+        .writeAsBytes(byteData.buffer.asUint8List());
+    return file.path;
+  }
+
   @override
   void initState() {
     super.initState();
 
     response = "wtf";
-    Future.delayed(Duration(seconds: 10), () {
-      loadModel();
+    Future.delayed(Duration(seconds: 10), () async {
+      await loadAndRunModel();
       setState(() {});
     });
   }
 
-  void loadModel() {
-    response = GGML.testGgmlInit("hello");
+  Future<void> loadAndRunModel() async {
+    try {
+      const modelPath =
+          "assets/models/clip-vit-base-patch32_ggml-vision-model-f16.gguf";
+
+      final path = await getAccessiblePathForAsset(modelPath, "model.bin");
+      response = GGML.testGgmlInit(path);
+    } catch (e) {
+      debugPrint("error" + e.toString());
+    }
+    // LOAD MODEL HERE
   }
+
+  void loadModel() {}
 
   @override
   Widget build(BuildContext context) {

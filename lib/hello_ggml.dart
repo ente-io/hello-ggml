@@ -20,7 +20,7 @@ class GGML {
   static testGgmlInit(String modelPath) {
     var res = _ggml
         .lookupFunction<test_ggml_init, test_ggml_init>("test_ggml_init")
-        .call(testArg.toNativeUtf8());
+        .call(modelPath.toNativeUtf8());
     return res.toDartString();
   }
 }
