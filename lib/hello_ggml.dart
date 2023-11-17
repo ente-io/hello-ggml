@@ -17,7 +17,7 @@ class GGML {
     }
   }
 
-  static testGgmlInit(String testArg) {
+  static testGgmlInit(String modelPath) {
     var res = _ggml
         .lookupFunction<test_ggml_init, test_ggml_init>("test_ggml_init")
         .call(testArg.toNativeUtf8());

@@ -2,7 +2,7 @@
 #include "test.h"
 #include <iostream>
 
-char *test_ggml_init(char *arg) {
+char *test_ggml_init(char *filename) {
 
     // Test GGML Init
     // struct ggml_init_params params_ggml;
@@ -14,7 +14,6 @@ char *test_ggml_init(char *arg) {
     // ggml_init(params_ggml);
 
     // Test CLIP model load
-    char *filename = (char *)"model.bin";
     int verbosity = 1;
     clip_model_load(filename, verbosity);
     return (char *)"pong";
