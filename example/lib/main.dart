@@ -9,7 +9,7 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
- 
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -21,6 +21,15 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
+    response = "wtf";
+    Future.delayed(Duration(seconds: 10), () {
+      loadModel();
+      setState(() {});
+    });
+  }
+
+  void loadModel() {
     response = GGML.testGgmlInit("hello");
   }
 
