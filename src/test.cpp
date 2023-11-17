@@ -2,12 +2,6 @@
 #include "test.h"
 #include <iostream>
 
-int main() {
-    std::cout << test_ggml_init("adsfsaf");
-    return 0;
-}
-
-
 char *test_ggml_init(char *arg) {
 
     // Test GGML Init
