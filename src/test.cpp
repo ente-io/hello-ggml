@@ -22,6 +22,6 @@ char *test_ggml_init(char *arg) {
     // Test CLIP model load
     char *filename = (char *)"model.bin";
     int verbosity = 1;
-    //clip_model_load(filename, verbosity);
+    clip_model_load(filename, verbosity);
     return (char *)"pong";
 }
