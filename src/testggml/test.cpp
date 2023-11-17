@@ -9,5 +9,5 @@ char *test_ggml_init(char *arg) {
     params_ggml.no_alloc   = true;
     params_ggml.mem_buffer = NULL;
     ggml_init(params_ggml);
-    return (char *)"after ggml init from native";
+    return (char *)"pong";
 }

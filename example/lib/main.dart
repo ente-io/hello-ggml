@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:hello_ggml/hello_ggml.dart' as hello_ggml;
+import 'package:hello_ggml/hello_ggml.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,20 +9,19 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
-
+ 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  late int sumResult;
+  late String response;
   late Future<int> sumAsyncResult;
 
   @override
   void initState() {
     super.initState();
-    sumResult = hello_ggml.sum(1, 2);
-    sumAsyncResult = hello_ggml.sumAsync(3, 4);
+    response = GGML.testGgmlInit("hello");
   }
 
   @override
@@ -47,22 +46,9 @@ class _MyAppState extends State<MyApp> {
                 ),
                 spacerSmall,
                 Text(
-                  'sum(1, 2) = $sumResult',
+                  'testGgmlInit("hello") = $response',
                   style: textStyle,
                   textAlign: TextAlign.center,
-                ),
-                spacerSmall,
-                FutureBuilder<int>(
-                  future: sumAsyncResult,
-                  builder: (BuildContext context, AsyncSnapshot<int> value) {
-                    final displayValue =
-                        (value.hasData) ? value.data : 'loading';
-                    return Text(
-                      'await sumAsync(3, 4) = $displayValue',
-                      style: textStyle,
-                      textAlign: TextAlign.center,
-                    );
-                  },
                 ),
               ],
             ),
