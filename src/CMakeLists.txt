@@ -1,4 +1,4 @@
 cmake_minimum_required(VERSION 3.10)
 set(BUILD_SHARED_LIBS ON)
-add_subdirectory(ggml)
+add_subdirectory(clip.cpp)
 add_subdirectory(testggml)
