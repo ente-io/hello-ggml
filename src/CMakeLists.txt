@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
+project(toplevel VERSION 1.0.0 DESCRIPTION "testggml")
 set(BUILD_SHARED_LIBS ON)
 add_subdirectory(clip.cpp)
 add_subdirectory(testggml)
